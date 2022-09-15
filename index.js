@@ -1,6 +1,8 @@
 const qrcode = require('qrcode-terminal');
 const fs = require('fs');
 const { Client,LocalAuth } = require('whatsapp-web.js');
+const express=require('express');
+const app=express();
 //const puppeteer=require('puppeteer');
 // const bot= async ()=>{
 // const browser = await puppeteer.launch({
@@ -82,4 +84,7 @@ client.on('message', async message => {
    
 });
 client.initialize();
+app.listen(process.env.PORT||5000,()=>{
+    console.log(`server is runing ${process.env.PORT||5000}`);
+});
  
