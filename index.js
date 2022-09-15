@@ -1,6 +1,6 @@
 const qrcode = require('qrcode-terminal');
 const fs = require('fs');
-const { Client,LegacySessionAuth,LocalAuth, Chat } = require('whatsapp-web.js');
+const { Client,LocalAuth } = require('whatsapp-web.js');
 //const puppeteer=require('puppeteer');
 // const bot= async ()=>{
 // const browser = await puppeteer.launch({
@@ -38,8 +38,9 @@ const client= new Client({
 
 client.on('qr', qr => {
     console.log(qr);
-    qrcode.generate(qr, {small: true}, function (qrcode) {
-        console.log(qrcode)});
+    qrcode.generate(qr, {small: true},(qrcode)=>{
+        console.log(qrcode);
+    });
 });
 
 client.on('ready', () => {
@@ -56,7 +57,7 @@ client.on('ready', () => {
 //const Chat_id="";
 client.on('message', async message => {
     //console.log(message);
-	const chat_id=message.id._serialized;
+	//const chat_id=message.id._serialized;
     let chat = await message.getChat();
     
     let response="";
@@ -71,7 +72,7 @@ client.on('message', async message => {
         await setTimeout(()=>{
 
             client.sendMessage(message.from,"I\’m sorry I couldn\’t reply you at this time, I\’m either  busy or away from my phone. I\'ll get back to you as soon as possible.")
-        },300000);
+        },20000);
 
         }
     }
@@ -80,9 +81,5 @@ client.on('message', async message => {
     }
    
 });
-
-
- 
- 
- client.initialize();
+client.initialize();
  
