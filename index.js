@@ -1,10 +1,14 @@
 const qrcode = require('qrcode-terminal');
 const fs = require('fs');
 const { Client,LegacySessionAuth,LocalAuth, Chat } = require('whatsapp-web.js');
+const puppeteer=require('puppeteer');
+const bot= async ()=>{
 const browser = await puppeteer.launch({
     headless: true,
     args: ['--no-sandbox','--disable-setuid-sandbox']
   })
+}
+ bot();
 // const SESSION_FILE_PATH = './session.json';
 
 // let sessionData;
